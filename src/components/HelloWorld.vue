@@ -45,13 +45,13 @@
     </v-card>
 
     <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
-      <v-bth @click="showReposHandler" >BACK</v-bth>
+      <!-- <v-bth class="ma-2" outlined color="indigo" @click="showReposHandler"
+        >BACK</v-bth
+      > -->
+      <v-btn class="ma-2" outlined color="black" @click="showReposHandler"><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn>
       <v-list>
         <v-list-item-group>
-          <v-list-item
-            v-for="branch in branches"
-            :key="branch.id"
-          >
+          <v-list-item v-for="branch in branches" :key="branch.id">
             <v-list-item-content>
               <v-list-item-title>
                 {{ branch.name }}
