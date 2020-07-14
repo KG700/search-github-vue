@@ -129,6 +129,7 @@ export default Vue.extend({
     showReposHandler: function() {
       this.showRepos = true;
       this.showBranches = false;
+      this.selectedRepo = "";
     },
   }
   // created() {
