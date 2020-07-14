@@ -90,13 +90,8 @@ export default Vue.extend({
         });
       this.username = "";
     },
-    selectARepo: function(repo: string) {
-      console.log("repo selected");
-      this.selectedRepo = repo;
-    },
     getBranches: function(repo: string) {
-      console.log(repo);
-      console.log(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
+      this.selectedRepo = repo;
       axios
         .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
         .then(response => {
