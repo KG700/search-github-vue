@@ -23,24 +23,23 @@
     </v-card>
 
     <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
-      <v-list-item two-line v-if="repos.length > 0">
-        <template>
-          <v-list-item-content>
-            <template v-for="repo in repos">
-              <v-card :key="repo.id" class="mt-2 mb-2" @click="getBranches(repo.name)">
-                <v-list-item-title :key="repo.id"
-                  ><a :href="repo.html_url">{{ repo.name }}</a></v-list-item-title
-                >
-                <v-list-item-subtitle :key="repo.id"
-                  >created: {{ repo.created_at }}</v-list-item-subtitle
-                >
-                <!-- <v-divider :key="repo.id" class="mt-2 mb-2"></v-divider> -->
-              </v-card>
-            </template>
-          </v-list-item-content>
-        </template>
-      </v-list-item>
-    <!-- </v-card> -->
+      <v-card v-if="repos.length > 0" width="500px" class="mx-auto">
+        <v-list>
+          <v-list-item-group>
+              <v-list-item v-for="repo in repos" :key="repo.id">
+            <v-list-item-content>
+                <v-list-item-title>
+                    <a :href="repo.html_url">{{ repo.name }}</a>
+                </v-list-item-title>
+                <v-list-item-subtitle>
+                  {{ repo.created_at }}
+                </v-list-item-subtitle>
+            </v-list-item-content>
+              </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      </v-card>
+
   </v-container>
 </template>
 
