@@ -2,10 +2,12 @@
   <v-container>
     <v-form>
       <v-text-field
+        v-model="username"
         label="Search Github Usernames..."
         prepend-icon="mdi-magnify"
       />
     </v-form>
+    <v-btn type="button" v-on:click="findUser">FIND</v-btn>
     <v-card width="280px" class="mx-auto mt-5">
       <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
@@ -59,29 +61,46 @@ declare module "vue/types/vue" {
 
 export default Vue.extend({
   name: "HelloWorld",
-  props: {
-    username: {
-      type: String,
-      required: true
-    }
-  },
+  // props: {
+  //   username: {
+  //     type: String,
+  //     required: true
+  //   }
+  // },
   data() {
     return {
+      username: "",
       user: {},
       repos: {}
     };
   },
-  created() {
-    axios
-      .get(`https://api.github.com/users/${this.username}`)
-      .then(response => {
-        this.user = response.data;
-      });
-    axios
-      .get(`https://api.github.com/users/${this.username}/repos`)
-      .then(response => {
-        this.repos = response.data;
-      });
+  methods: {
+    findUser: function() {
+      console.log("finding user");
+      console.log(this.username);
+      axios
+        .get(`https://api.github.com/users/${this.username}`)
+        .then(response => {
+          this.user = response.data;
+        });
+      axios
+        .get(`https://api.github.com/users/${this.username}/repos`)
+        .then(response => {
+          this.repos = response.data;
+        });
+    }
   }
+  // created() {
+  //   axios
+  //     .get(`https://api.github.com/users/${this.username}`)
+  //     .then(response => {
+  //       this.user = response.data;
+  //     });
+  //   axios
+  //     .get(`https://api.github.com/users/${this.username}/repos`)
+  //     .then(response => {
+  //       this.repos = response.data;
+  //     });
+  // }
 });
 </script>
