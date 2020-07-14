@@ -5,10 +5,10 @@
         v-model="username"
         label="Search Github Usernames..."
         prepend-icon="mdi-magnify"
-        v-on:keyup.enter.prevent="findUser"
+        @keyup.enter.prevent="findUser"
       />
     </v-form>
-    <v-btn type="button" v-on:click="findUser">FIND</v-btn>
+    <v-btn type="button" @click="findUser">FIND</v-btn>
     <v-card width="280px" class="mx-auto mt-5">
       <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
@@ -89,6 +89,7 @@ export default Vue.extend({
         .then(response => {
           this.repos = response.data;
         });
+      this.username = "";
     }
   }
   // created() {
