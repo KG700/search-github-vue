@@ -23,7 +23,7 @@
     </v-card>
 
     <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
-      <v-card v-if="repos.length > 0" width="500px" class="mx-auto mt-5">
+      <v-card v-if="showRepos" width="500px" class="mx-auto mt-5">
         <v-list>
           <v-list-item-group>
               <v-list-item v-for="repo in repos" :key="repo.id" @click="getBranches(repo.name)">
@@ -69,7 +69,9 @@ export default Vue.extend({
       user: {},
       repos: [],
       selectedRepo: "",
-      branches: []
+      branches: [],
+      showRepos: false,
+      showBranches: false
     };
   },
   // calculated: {
@@ -89,6 +91,7 @@ export default Vue.extend({
           this.repos = response.data;
         });
       this.username = "";
+      this.showRepos = true;
     },
     getBranches: function(repo: string) {
       this.selectedRepo = repo;
@@ -97,6 +100,8 @@ export default Vue.extend({
         .then(response => {
           this.branches = response.data;
         });
+      this.showRepos = false;
+      this.showBranches = true;
     }
   }
   // created() {
