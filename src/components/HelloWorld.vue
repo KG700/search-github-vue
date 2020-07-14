@@ -15,11 +15,31 @@
       </v-card-title>
       <v-card-subtitle>created: {{ user.created_at }}</v-card-subtitle>
     </v-card>
-    <v-list-item>
-      <v-list-item-content>
-        <v-list-item-title v-for="repo in repos" :key="repo.id">{{ repo.name }}</v-list-item-title>
-      </v-list-item-content>
+
+    <v-list-item two-line width="500px">
+      <template>
+        <v-list-item-content>
+          <template v-for="repo in repos">
+            <v-list-item-title :key="repo.id">{{ repo.name }}</v-list-item-title>
+            <v-list-item-subtitle :key="repo.id">{{ repo.created_at }}</v-list-item-subtitle>
+            <v-divider :key="repo.id" class="mt-2 mb-2"></v-divider>
+          </template>
+        </v-list-item-content>
+      </template>
     </v-list-item>
+
+
+
+    <!-- <v-list two-line>
+          <template v-for="(item, index) in items">
+            <v-list-tile-avatar><img :src="item.avatar"></v-list-tile-avatar>
+            <v-list-tile-content>
+              <v-list-tile-title v-html="item.title"></v-list-tile-title>
+              <v-list-tile-sub-title v-html="item.subtitle"></v-list-tile-sub-title>
+            </v-list-tile-content>
+          </template>
+        </v-list> -->
+
   </v-container>
 </template>
 
