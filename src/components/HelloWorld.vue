@@ -13,20 +13,22 @@
           ><h2 class="display-1">{{ user.name }}</h2></a
         >
       </v-card-title>
-      <v-card-subtitle>created: {{ user.created_at }}</v-card-subtitle>
+      <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
 
-    <v-list-item two-line width="500px">
-      <template>
-        <v-list-item-content>
-          <template v-for="repo in repos">
-            <v-list-item-title :key="repo.id">{{ repo.name }}</v-list-item-title>
-            <v-list-item-subtitle :key="repo.id">{{ repo.created_at }}</v-list-item-subtitle>
-            <v-divider :key="repo.id" class="mt-2 mb-2"></v-divider>
-          </template>
-        </v-list-item-content>
-      </template>
-    </v-list-item>
+    <v-card width="550px" class="mx-auto mt-6">
+      <v-list-item two-line>
+        <template>
+          <v-list-item-content>
+            <template v-for="repo in repos">
+              <v-list-item-title :key="repo.id"><a :href="repo.html_url">{{ repo.name }}</a></v-list-item-title>
+              <v-list-item-subtitle :key="repo.id">created: {{ repo.created_at }}</v-list-item-subtitle>
+              <v-divider :key="repo.id" class="mt-2 mb-2"></v-divider>
+            </template>
+          </v-list-item-content>
+        </template>
+      </v-list-item>
+    </v-card>
 
 
 
