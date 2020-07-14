@@ -7,22 +7,22 @@
       />
     </v-form>
     <v-card class="mx-auto mt-5">
-      <v-img src="https://via.placeholder.com/200"></v-img>
+      <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
-        <a href="https://github.com/KG700"><h2 class="display-1">KG700</h2></a>
+        <a :href="user.html_url"><h2 class="display-1">{{ user.name }}</h2></a>
       </v-card-title>
-      <v-card-subtitle>created: 1 Jan 2019</v-card-subtitle>
+      <v-card-subtitle>created: {{ user.created_at }}</v-card-subtitle>
     </v-card>
   </v-container>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import axios, { AxiosStatic } from 'axios';
+import axios, { AxiosStatic } from "axios";
 
 Vue.prototype.$axios = axios;
 
-declare module 'vue/types/vue' {
+declare module "vue/types/vue" {
   interface Vue {
     $axios: AxiosStatic;
   }
@@ -36,17 +36,23 @@ export default Vue.extend({
       required: true
     }
   },
-  data () {
+  data() {
     return {
-      user: {}
-    }
+      user: {},
+      repos: {}
+    };
   },
-  created () {
-    axios.get(`https://api.github.com/users/${this.username}`)
+  created() {
+    axios
+      .get(`https://api.github.com/users/${this.username}`)
       .then(response => {
-        console.log(response.data)
-      })
+        this.user = response.data;
+      });
+    axios
+      .get(`https://api.github.com/users/${this.username}/repos`)
+      .then(response => {
+        this.repos = response.data;
+      });
   }
-
 });
 </script>

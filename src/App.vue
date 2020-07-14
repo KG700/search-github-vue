@@ -1,6 +1,6 @@
 <template>
   <v-app>
-   <HelloComponent />
+   <HelloComponent username="KG700" />
   </v-app>
 </template>
 
