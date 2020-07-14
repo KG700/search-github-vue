@@ -1,17 +1,27 @@
 <template>
   <v-container>
-    <v-form>
-      <v-text-field
-        label="Search Github Usernames..."
-        prepend-icon="mdi-magnify"
-      />
-    </v-form>
-    <v-card class="mx-auto mt-5">
-      <v-img src="https://via.placeholder.com/200"></v-img>
+    <v-card width="400" class="mx-auto mt-5" >
       <v-card-title>
-        <h2 class="display-1">KG700</h2>
+        <h1 class="display-1">Login</h1>
       </v-card-title>
-      <v-card-subtitle>created: 1 Jan 2019</v-card-subtitle>
+      <v-card-text>
+        <v-form>
+          <v-text-field label="Username" prepend-icon="mdi-account-circle"/>
+          <v-text-field
+            :type="showPassword ? 'text' : 'password'"
+            label="Password"
+            prepend-icon="mdi-lock"
+            :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+            @click:append="showPassword = !showPassword"
+          />
+        </v-form>
+      </v-card-text>
+      <v-divider></v-divider>
+      <v-card-actions>
+        <v-btn color="success">Register</v-btn>
+        <v-spacer></v-spacer>
+        <v-btn color="info">Login</v-btn>
+      </v-card-actions>
     </v-card>
   </v-container>
 </template>
