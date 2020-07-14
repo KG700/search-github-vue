@@ -1,4 +1,7 @@
-# tech-test
+# Search Github
+
+## Overview
+Search Github to find user's repositories and all their branches
 
 ## Project setup
 ```
