@@ -27,7 +27,7 @@
         <template>
           <v-list-item-content>
             <template v-for="repo in repos">
-              <v-card :key="repo.id" class="mt-2 mb-2" @click="selectARepo(repo.name)">
+              <v-card :key="repo.id" class="mt-2 mb-2" @click="getBranches(repo.name)">
                 <v-list-item-title :key="repo.id"
                   ><a :href="repo.html_url">{{ repo.name }}</a></v-list-item-title
                 >
@@ -69,7 +69,8 @@ export default Vue.extend({
       username: "",
       user: {},
       repos: [],
-      selectedRepo: ""
+      selectedRepo: "",
+      branches: []
     };
   },
   // calculated: {
@@ -94,11 +95,12 @@ export default Vue.extend({
       console.log("repo selected");
       this.selectedRepo = repo;
     },
-    getBranches: function() {
+    getBranches: function(repo: string) {
+      console.log(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
       axios
-        .get(`https://api.github.com/repos/{this.user.login}/{this.selectedRepo}/branches`)
+        .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
         .then(response => {
-          this.user = response.data;
+          this.branches = response.data;
         });
     }
   }
