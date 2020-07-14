@@ -76,9 +76,8 @@ export default Vue.extend({
     };
   },
   methods: {
-    findUser: function() {
-      console.log("finding user");
-      console.log(this.username);
+    findUser: function(event) {
+      console.log(event)
       axios
         .get(`https://api.github.com/users/${this.username}`)
         .then(response => {
