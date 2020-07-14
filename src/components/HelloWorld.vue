@@ -15,9 +15,11 @@
       </v-card-title>
       <v-card-subtitle>created: {{ user.created_at }}</v-card-subtitle>
     </v-card>
-    <ul>
-      <li v-for="repo in repos" :key="repo.id">{{ repo.name }}</li>
-    </ul>
+    <v-list-item>
+      <v-list-item-content>
+        <v-list-item-title v-for="repo in repos" :key="repo.id">{{ repo.name }}</v-list-item-title>
+      </v-list-item-content>
+    </v-list-item>
   </v-container>
 </template>
 
