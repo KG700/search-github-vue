@@ -1,10 +1,11 @@
 <template>
   <v-container>
-    <v-form>
+    <v-form @submit.prevent>
       <v-text-field
         v-model="username"
         label="Search Github Usernames..."
         prepend-icon="mdi-magnify"
+        v-on:keyup.enter.prevent="findUser"
       />
     </v-form>
     <v-btn type="button" v-on:click="findUser">FIND</v-btn>
