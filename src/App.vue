@@ -1,6 +1,9 @@
 <template>
   <v-app>
    <HelloComponent />
+   <v-form>
+      <v-text-field label="Search Github Usernames..." prepend-icon="mdi-magnify" />
+   </v-form>
   </v-app>
 </template>
 
