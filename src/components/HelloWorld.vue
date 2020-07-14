@@ -23,10 +23,10 @@
     </v-card>
 
     <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
-      <v-card v-if="repos.length > 0" width="500px" class="mx-auto">
+      <v-card v-if="repos.length > 0" width="500px" class="mx-auto mt-5">
         <v-list>
           <v-list-item-group>
-              <v-list-item v-for="repo in repos" :key="repo.id">
+              <v-list-item v-for="repo in repos" :key="repo.id" @click="getBranches(repo.name)">
             <v-list-item-content>
                 <v-list-item-title>
                     <a :href="repo.html_url">{{ repo.name }}</a>
@@ -95,6 +95,7 @@ export default Vue.extend({
       this.selectedRepo = repo;
     },
     getBranches: function(repo: string) {
+      console.log(repo);
       console.log(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
       axios
         .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
