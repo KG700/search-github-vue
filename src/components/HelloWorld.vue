@@ -9,7 +9,7 @@
     <v-card class="mx-auto mt-5">
       <v-img src="https://via.placeholder.com/200"></v-img>
       <v-card-title>
-        <h2 class="display-1">KG700</h2>
+        <a href="https://github.com/KG700"><h2 class="display-1">KG700</h2></a>
       </v-card-title>
       <v-card-subtitle>created: 1 Jan 2019</v-card-subtitle>
     </v-card>
