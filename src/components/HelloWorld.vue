@@ -9,7 +9,10 @@
       />
     </v-form>
     <v-btn type="button" @click="findUser">FIND</v-btn>
-    <v-card width="280px" class="mx-auto mt-5">
+    <p v-if="repos.length === 0">
+      Search for a Github user in the search box above
+    </p>
+    <v-card v-if="repos.length > 0" width="280px" class="mx-auto mt-5">
       <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
         <a :href="user.html_url"
@@ -19,7 +22,7 @@
       <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
 
-    <v-card width="550px" class="mx-auto mt-6">
+    <v-card  v-if="repos.length > 0" width="550px" class="mx-auto mt-6">
       <v-list-item two-line>
         <template>
           <v-list-item-content>
@@ -72,9 +75,13 @@ export default Vue.extend({
     return {
       username: "",
       user: {},
-      repos: {}
+      repos: []
     };
   },
+  // calculated: {
+  //   usersFound: function() {
+
+  //   },
   methods: {
     findUser: function(event) {
       console.log(event)
