@@ -6,13 +6,18 @@
         prepend-icon="mdi-magnify"
       />
     </v-form>
-    <v-card class="mx-auto mt-5">
+    <v-card width="280px" class="mx-auto mt-5">
       <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
-        <a :href="user.html_url"><h2 class="display-1">{{ user.name }}</h2></a>
+        <a :href="user.html_url"
+          ><h2 class="display-1">{{ user.name }}</h2></a
+        >
       </v-card-title>
       <v-card-subtitle>created: {{ user.created_at }}</v-card-subtitle>
     </v-card>
+    <ul>
+      <li v-for="repo in repos" :key="repo.id">{{ repo.name }}</li>
+    </ul>
   </v-container>
 </template>
 
