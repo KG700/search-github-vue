@@ -8,8 +8,8 @@
         @keyup.enter.prevent="findUser"
       />
     </v-form>
-    <v-btn type="button" @click="findUser">FIND</v-btn>
-    <p v-if="repos.length === 0">
+    <!-- <v-btn type="button" @click="findUser">FIND</v-btn> -->
+    <p v-if="repos.length === 0" class="mx-auto">
       Search for a Github user in the search box above
     </p>
     <v-card v-if="repos.length > 0" width="280px" class="mx-auto mt-5">
@@ -83,8 +83,7 @@ export default Vue.extend({
 
   //   },
   methods: {
-    findUser: function(event) {
-      console.log(event)
+    findUser: function() {
       axios
         .get(`https://api.github.com/users/${this.username}`)
         .then(response => {
