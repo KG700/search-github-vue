@@ -44,7 +44,8 @@
       </v-list>
     </v-card>
 
-    <v-card v-if="showBranches">
+    <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
+      <v-bth @click="showReposHandler" >BACK</v-bth>
       <v-list>
         <v-list-item-group>
           <v-list-item
@@ -113,6 +114,7 @@ export default Vue.extend({
         });
       this.username = "";
       this.showRepos = true;
+      this.showBranches = false;
     },
     getBranches: function(repo: string) {
       this.selectedRepo = repo;
@@ -123,7 +125,11 @@ export default Vue.extend({
         });
       this.showRepos = false;
       this.showBranches = true;
-    }
+    },
+    showReposHandler: function() {
+      this.showRepos = true;
+      this.showBranches = false;
+    },
   }
   // created() {
   //   axios
