@@ -12,12 +12,10 @@
     <p v-if="repos.length === 0" class="mx-auto">
       Search for a Github user in the search box above
     </p>
-    <v-card v-if="repos.length > 0" width="280px" class="mx-auto mt-5">
+    <v-card v-if="repos.length > 0" width="200px" class="mx-auto mt-5">
       <v-img :src="user.avatar_url"></v-img>
       <v-card-title>
-        <a :href="user.html_url"
-          ><h2 class="display-1">{{ user.name }}</h2></a
-        >
+        <v-btn text :href="user.html_url">{{ user.name }}</v-btn>
       </v-card-title>
       <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
@@ -33,7 +31,7 @@
           >
             <v-list-item-content>
               <v-list-item-title>
-                <a :href="repo.html_url">{{ repo.name }}</a>
+                <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
               </v-list-item-title>
               <v-list-item-subtitle>
                 {{ repo.created_at }}
@@ -50,7 +48,7 @@
       > -->
       <v-btn class="ma-2" outlined color="black" @click="showReposHandler"><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn>
       <v-list>
-        <v-list-item-group>
+        <!-- <v-list-item-group> -->
           <v-list-item v-for="branch in branches" :key="branch.id">
             <v-list-item-content>
               <v-list-item-title>
@@ -58,7 +56,7 @@
               </v-list-item-title>
             </v-list-item-content>
           </v-list-item>
-        </v-list-item-group>
+        <!-- </v-list-item-group> -->
       </v-list>
     </v-card>
 
