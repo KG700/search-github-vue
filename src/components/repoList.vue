@@ -12,6 +12,7 @@
             :repo="repo"
             :user="user"
             :key="repo.id"
+            @select="selectEvent"
           ></repoItem>
         </v-list-item-group>
       </v-list>
@@ -54,7 +55,10 @@ export default Vue.extend({
     },
     previousRepoPage: function() {
       this.reposPage--;
-    }
+    },
+    selectEvent: function(repo: string) {
+        this.$emit("select", repo);
+    },
   }
 });
 </script>

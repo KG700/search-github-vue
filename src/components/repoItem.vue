@@ -1,5 +1,5 @@
 <template>
-  <v-list-item @click="getBranches(repo.name)">
+  <v-list-item @click="select">
     <v-list-item-content>
       <v-list-item-title>
         <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
@@ -26,7 +26,7 @@ declare module "vue/types/vue" {
 export default Vue.extend({
   name: "repoItem",
   props: {
-    repo: Array,
+    repo: Object,
     user: String
   },
   data () {
@@ -35,17 +35,21 @@ export default Vue.extend({
     };
   },
   methods: {
-    getBranches: function(repo: string) {
-      //   this.selectedRepo = repo;
-      console.log(`https://api.github.com/repos/${this.user}/${repo}/branches`)
-      axios
-        .get(`https://api.github.com/repos/${this.user}/${repo}/branches`)
-        .then(response => {
-          this.branches = response.data;
-        });
-      //   this.showRepos = false;
-      //   this.showBranches = true;
-    },
+    select: function() {
+        console.log("repo clicked")
+      this.$emit("select", this.repo.name);
+    }
+    // getBranches: function(repo: string) {
+    //   //   this.selectedRepo = repo;
+    //   console.log(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+    //   axios
+    //     .get(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+    //     .then(response => {
+    //       this.branches = response.data;
+    //     });
+    //   //   this.showRepos = false;
+    //   //   this.showBranches = true;
+    // },
   }
 });
 </script>

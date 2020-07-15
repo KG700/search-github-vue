@@ -20,7 +20,12 @@
       <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
 
-    <repoList :show="showRepos" :repos="repos" :user="user.login" ></repoList>
+    <repoList
+      :show="showRepos"
+      :repos="repos"
+      :user="user.login"
+      @select="getBranches"
+    ></repoList>
 
     <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
       <!-- <v-bth class="ma-2" outlined color="indigo" @click="showReposHandler"
@@ -89,6 +94,18 @@ export default Vue.extend({
       this.username = "";
       this.showRepos = true;
       this.showBranches = false;
+    },
+    getBranches: function(repo: string) {
+      console.log("hello from main");
+      this.selectedRepo = repo;
+      console.log(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+      axios
+        .get(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+        .then(response => {
+          this.branches = response.data;
+        });
+        this.showRepos = false;
+        this.showBranches = true;
     },
     showReposHandler: function() {
       this.showRepos = true;
