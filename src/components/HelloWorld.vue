@@ -22,7 +22,9 @@
 
     <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
     <v-card v-if="showRepos" width="500px" class="mx-auto mt-5">
-      <v-btn outlined @click="previousRepoPage"><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn>
+      <v-btn outlined :disabled="reposPage === 0" @click="previousRepoPage"
+        ><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
+      >
       <v-btn outlined @click="nextRepoPage">NEXT<v-icon dark right>mdi-arrow-right</v-icon></v-btn>
       <v-list>
         <v-list-item-group>
@@ -52,12 +54,12 @@
       <v-list>
         <!-- <v-list-item-group> -->
           <v-list-item v-for="branch in branches" :key="branch.id">
-            <v-list-item-content>
-              <v-list-item-title>
-                {{ branch.name }}
-              </v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
+          <v-list-item-content>
+            <v-list-item-title>
+              {{ branch.name }}
+            </v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
         <!-- </v-list-item-group> -->
       </v-list>
     </v-card>
