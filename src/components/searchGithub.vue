@@ -1,6 +1,5 @@
 <template>
   <v-container>
-    <repoList></repoList>
     <v-form @submit.prevent>
       <v-text-field
         v-model="username"
@@ -21,31 +20,7 @@
       <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
 
-    <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
-    <v-card v-if="showRepos" width="500px" class="mx-auto mt-5">
-      <v-btn outlined :disabled="reposPage === 0" @click="previousRepoPage"
-        ><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
-      >
-      <v-btn outlined :disabled="disableNext" @click="nextRepoPage">NEXT<v-icon dark right>mdi-arrow-right</v-icon></v-btn>
-      <v-list>
-        <v-list-item-group>
-          <v-list-item
-            v-for="repo in displayRepos"
-            :key="repo.id"
-            @click="getBranches(repo.name)"
-          >
-            <v-list-item-content>
-              <v-list-item-title>
-                <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ repo.created_at }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
-        </v-list-item-group>
-      </v-list>
-    </v-card>
+    <repoList :show="showRepos" :repos="repos"></repoList>
 
     <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
       <!-- <v-bth class="ma-2" outlined color="indigo" @click="showReposHandler"
