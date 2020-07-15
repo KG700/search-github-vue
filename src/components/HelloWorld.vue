@@ -93,12 +93,15 @@ export default Vue.extend({
       selectedRepo: "",
       branches: [],
       showRepos: false,
-      showBranches: false
+      showBranches: false,
+      reposPage: 0
     };
   },
   computed: {
     displayRepos: function() {
-      return this.repos.slice(0,10);
+      const firstRepo = this.reposPage * 25
+      const lastRepo = (this.reposPage * 25) + 25
+      return this.repos.slice(firstRepo,lastRepo);
     },
   },
   methods: {
