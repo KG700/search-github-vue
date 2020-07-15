@@ -71,19 +71,8 @@ export default Vue.extend({
       selectedRepo: "",
       branches: [],
       showRepos: false,
-      showBranches: false,
-      reposPage: 0
+      showBranches: false
     };
-  },
-  computed: {
-    displayRepos: function() {
-      const firstRepo = this.reposPage * 25
-      const lastRepo = (this.reposPage * 25) + 25
-      return this.repos.slice(firstRepo,lastRepo);
-    },
-    disableNext: function() {
-      return this.reposPage === Math.floor(this.repos.length / 25);
-    },
   },
   methods: {
     findUser: function() {

@@ -46,7 +46,21 @@ export default Vue.extend({
   props: {
     show: Boolean,
     repos: Array
+  },
+  data () {
+    return {
+      reposPage: 0
+    };
+  },
+  computed: {
+    displayRepos: function() {
+      const firstRepo = this.reposPage * 25;
+      const lastRepo = this.reposPage * 25 + 25;
+      return this.repos.slice(firstRepo, lastRepo);
+    },
+    disableNext: function() {
+      return this.reposPage === Math.floor(this.repos.length / 25);
+    }
   }
-  
 });
 </script>
