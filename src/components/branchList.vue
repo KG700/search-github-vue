@@ -4,11 +4,9 @@
       ><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn
     >
     <v-list>
-      <branchListItem
-        v-for="branch in branches"
-        :branch="branch"
-        :key="branch.id"
-      ></branchListItem>
+      <branchListItem v-for="branch in branches" :key="branch.id">
+        {{ branch.name }}</branchListItem
+      >
     </v-list>
   </v-card>
 </template>
