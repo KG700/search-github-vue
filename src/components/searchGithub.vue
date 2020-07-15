@@ -98,9 +98,9 @@ export default Vue.extend({
     getBranches: function(repo: string) {
       console.log("hello from main");
       this.selectedRepo = repo;
-      console.log(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+      console.log(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
       axios
-        .get(`https://api.github.com/repos/${this.user}/${repo}/branches`)
+        .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
         .then(response => {
           this.branches = response.data;
         });
