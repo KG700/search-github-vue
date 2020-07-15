@@ -27,7 +27,7 @@
       <v-list>
         <v-list-item-group>
           <v-list-item
-            v-for="repo in repos"
+            v-for="repo in displayRepos"
             :key="repo.id"
             @click="getBranches(repo.name)"
           >
@@ -96,10 +96,11 @@ export default Vue.extend({
       showBranches: false
     };
   },
-  // calculated: {
-  //   usersFound: function() {
-
-  //   },
+  computed: {
+    displayRepos: function() {
+      return this.repos.slice(0,10);
+    },
+  },
   methods: {
     findUser: function() {
       axios
