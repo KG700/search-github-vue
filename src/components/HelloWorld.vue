@@ -67,6 +67,8 @@
   </v-container>
 </template>
 
+
+
 <script lang="ts">
 import Vue from "vue";
 import axios, { AxiosStatic } from "axios";
@@ -81,12 +83,6 @@ declare module "vue/types/vue" {
 
 export default Vue.extend({
   name: "HelloWorld",
-  // props: {
-  //   username: {
-  //     type: String,
-  //     required: true
-  //   }
-  // },
   data() {
     return {
       username: "",
@@ -147,17 +143,5 @@ export default Vue.extend({
       this.reposPage--;
     },
   }
-  // created() {
-  //   axios
-  //     .get(`https://api.github.com/users/${this.username}`)
-  //     .then(response => {
-  //       this.user = response.data;
-  //     });
-  //   axios
-  //     .get(`https://api.github.com/users/${this.username}/repos`)
-  //     .then(response => {
-  //       this.repos = response.data;
-  //     });
-  // }
 });
 </script>
