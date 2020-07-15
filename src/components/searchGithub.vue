@@ -26,20 +26,8 @@
       @select="getBranches"
     ></repoList>
 
-    <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
-      <v-btn class="ma-2" outlined color="black" @click="showReposHandler"
-        ><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn
-      >
-      <v-list>
-        <v-list-item v-for="branch in branches" :key="branch.id">
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ branch.name }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-    </v-card>
+    <branchList :show="showBranches" :branches="getBranches"></branchList>
+
   </v-container>
 </template>
 
@@ -47,6 +35,7 @@
 import Vue from "vue";
 import axios, { AxiosStatic } from "axios";
 import repoList from "@/components/repoList.vue";
+import branchList from "@/components/branchList.vue";
 
 Vue.prototype.$axios = axios;
 
@@ -59,7 +48,8 @@ declare module "vue/types/vue" {
 export default Vue.extend({
   name: "searchGithub",
   components: {
-    repoList
+    repoList,
+    branchList
   },
   data() {
     return {
@@ -92,10 +82,10 @@ export default Vue.extend({
       console.log("hello from main");
       this.selectedRepo = repo;
       console.log(
-        `https://api.github.com/repos/${this.user.login}/${repo}/branches`
+        `https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`
       );
       axios
-        .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
+        .get(`https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`)
         .then(response => {
           this.branches = response.data;
         });
