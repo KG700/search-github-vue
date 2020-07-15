@@ -29,27 +29,11 @@ export default Vue.extend({
     repo: Object,
     user: String
   },
-  data () {
-    return {
-      branches: []
-    };
-  },
   methods: {
     select: function() {
-        console.log("repo clicked")
+        // console.log("repo clicked")
       this.$emit("select", this.repo.name);
     }
-    // getBranches: function(repo: string) {
-    //   //   this.selectedRepo = repo;
-    //   console.log(`https://api.github.com/repos/${this.user}/${repo}/branches`)
-    //   axios
-    //     .get(`https://api.github.com/repos/${this.user}/${repo}/branches`)
-    //     .then(response => {
-    //       this.branches = response.data;
-    //     });
-    //   //   this.showRepos = false;
-    //   //   this.showBranches = true;
-    // },
   }
 });
 </script>

@@ -57,7 +57,7 @@ export default Vue.extend({
       this.reposPage--;
     },
     selectEvent: function(repo: string) {
-        this.$emit("select", repo);
+      this.$emit("select", repo);
     },
   }
 });
