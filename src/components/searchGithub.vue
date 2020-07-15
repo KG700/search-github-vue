@@ -8,7 +8,6 @@
         @keyup.enter.prevent="findUser"
       />
     </v-form>
-    <!-- <v-btn type="button" @click="findUser">FIND</v-btn> -->
     <p v-if="repos.length === 0" class="mx-auto">
       Search for a Github user in the search box above
     </p>
@@ -28,27 +27,21 @@
     ></repoList>
 
     <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
-      <!-- <v-bth class="ma-2" outlined color="indigo" @click="showReposHandler"
-        >BACK</v-bth
-      > -->
-      <v-btn class="ma-2" outlined color="black" @click="showReposHandler"><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn>
+      <v-btn class="ma-2" outlined color="black" @click="showReposHandler"
+        ><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn
+      >
       <v-list>
-        <!-- <v-list-item-group> -->
-          <v-list-item v-for="branch in branches" :key="branch.id">
+        <v-list-item v-for="branch in branches" :key="branch.id">
           <v-list-item-content>
             <v-list-item-title>
               {{ branch.name }}
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <!-- </v-list-item-group> -->
       </v-list>
     </v-card>
-
   </v-container>
 </template>
-
-
 
 <script lang="ts">
 import Vue from "vue";
@@ -98,20 +91,22 @@ export default Vue.extend({
     getBranches: function(repo: string) {
       console.log("hello from main");
       this.selectedRepo = repo;
-      console.log(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
+      console.log(
+        `https://api.github.com/repos/${this.user.login}/${repo}/branches`
+      );
       axios
         .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
         .then(response => {
           this.branches = response.data;
         });
-        this.showRepos = false;
-        this.showBranches = true;
+      this.showRepos = false;
+      this.showBranches = true;
     },
     showReposHandler: function() {
       this.showRepos = true;
       this.showBranches = false;
       this.selectedRepo = "";
-    },
+    }
   }
 });
 </script>
