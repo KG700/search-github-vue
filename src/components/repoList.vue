@@ -1,50 +1,36 @@
 <template>
   <v-container>
-      <v-card v-if="show" width="500px" class="mx-auto mt-5">
+    <v-card v-if="show" width="500px" class="mx-auto mt-5">
       <v-btn outlined :disabled="reposPage === 0" @click="previousRepoPage"
         ><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
       >
       <v-btn outlined :disabled="disableNext" @click="nextRepoPage">NEXT<v-icon dark right>mdi-arrow-right</v-icon></v-btn>
       <v-list>
         <v-list-item-group>
-          <v-list-item
+          <repoItem
             v-for="repo in displayRepos"
+            :repo="repo"
+            :user="user"
             :key="repo.id"
-            @click="getBranches(repo.name)"
-          >
-            <v-list-item-content>
-              <v-list-item-title>
-                <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
-              </v-list-item-title>
-              <v-list-item-subtitle>
-                {{ repo.created_at }}
-              </v-list-item-subtitle>
-            </v-list-item-content>
-          </v-list-item>
+          ></repoItem>
         </v-list-item-group>
       </v-list>
     </v-card>
   </v-container>
 </template>
 
-
-
 <script lang="ts">
 import Vue from "vue";
-// import axios, { AxiosStatic } from "axios";
-
-// Vue.prototype.$axios = axios;
-
-// declare module "vue/types/vue" {
-//   interface Vue {
-//     $axios: AxiosStatic;
-//   }
-// }
+import repoItem from "@/components/repoItem.vue";
 
 export default Vue.extend({
   name: "repoList",
+  components: {
+    repoItem
+  },
   props: {
     show: Boolean,
+    user: String,
     repos: Array
   },
   data () {

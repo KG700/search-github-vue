@@ -20,7 +20,7 @@
       <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
     </v-card>
 
-    <repoList :show="showRepos" :repos="repos"></repoList>
+    <repoList :show="showRepos" :repos="repos" :user="user.login" ></repoList>
 
     <v-card v-if="showBranches" width="500px" class="mx-auto mt-5">
       <!-- <v-bth class="ma-2" outlined color="indigo" @click="showReposHandler"
@@ -60,8 +60,8 @@ declare module "vue/types/vue" {
 
 export default Vue.extend({
   name: "searchGithub",
-    components: {
-      repoList
+  components: {
+    repoList
   },
   data() {
     return {
@@ -89,16 +89,6 @@ export default Vue.extend({
       this.username = "";
       this.showRepos = true;
       this.showBranches = false;
-    },
-    getBranches: function(repo: string) {
-      this.selectedRepo = repo;
-      axios
-        .get(`https://api.github.com/repos/${this.user.login}/${repo}/branches`)
-        .then(response => {
-          this.branches = response.data;
-        });
-      this.showRepos = false;
-      this.showBranches = true;
     },
     showReposHandler: function() {
       this.showRepos = true;
