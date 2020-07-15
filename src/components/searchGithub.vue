@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <repoList></repoList>
     <v-form @submit.prevent>
       <v-text-field
         v-model="username"
@@ -72,6 +73,7 @@
 <script lang="ts">
 import Vue from "vue";
 import axios, { AxiosStatic } from "axios";
+import repoList from "@/components/repoList.vue";
 
 Vue.prototype.$axios = axios;
 
@@ -83,6 +85,9 @@ declare module "vue/types/vue" {
 
 export default Vue.extend({
   name: "searchGithub",
+    components: {
+      repoList
+  },
   data() {
     return {
       username: "",
