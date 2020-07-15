@@ -4,23 +4,25 @@
       ><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn
     >
     <v-list>
-      <v-list-item v-for="branch in branches" :key="branch.id">
-        <v-list-item-content>
-          <v-list-item-title>
-            {{ branch.name }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+      <branchItem
+        v-for="branch in branches"
+        :branch="branch"
+        :key="branch.id"
+      ></branchItem>
     </v-list>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
+import branchItem from "@/components/branchItem.vue";
 // import repoItem from "@/components/repoItem.vue";
 
 export default Vue.extend({
   name: "branchList",
+  components: {
+    branchItem
+  },
   props: {
     show: Boolean,
     branches: Array
