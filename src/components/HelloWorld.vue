@@ -22,7 +22,7 @@
 
     <!-- <v-card v-if="repos.length > 0" width="550px" class="mx-auto mt-6"> -->
     <v-card v-if="showRepos" width="500px" class="mx-auto mt-5">
-      <v-btn outlined><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn>
+      <v-btn outlined @click="previousRepoPage"><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn>
       <v-btn outlined @click="nextRepoPage">NEXT<v-icon dark right>mdi-arrow-right</v-icon></v-btn>
       <v-list>
         <v-list-item-group>
@@ -136,7 +136,10 @@ export default Vue.extend({
       this.selectedRepo = "";
     },
     nextRepoPage: function() {
-      this.reposPage++
+      this.reposPage++;
+    },
+    previousRepoPage: function() {
+      this.reposPage--;
     },
   }
   // created() {
