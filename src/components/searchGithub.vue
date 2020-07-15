@@ -105,12 +105,6 @@ export default Vue.extend({
       this.showBranches = false;
       this.selectedRepo = "";
     },
-    nextRepoPage: function() {
-      this.reposPage++;
-    },
-    previousRepoPage: function() {
-      this.reposPage--;
-    },
   }
 });
 </script>

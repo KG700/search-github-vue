@@ -60,6 +60,14 @@ export default Vue.extend({
     },
     disableNext: function() {
       return this.reposPage === Math.floor(this.repos.length / 25);
+    },
+  },
+  methods: {
+    nextRepoPage: function() {
+      this.reposPage++;
+    },
+    previousRepoPage: function() {
+      this.reposPage--;
     }
   }
 });
