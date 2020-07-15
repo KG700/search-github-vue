@@ -9,13 +9,13 @@
       >
       <v-list>
         <v-list-item-group>
-          <repoItem
+          <repoListItem
             v-for="repo in displayRepos"
             :repo="repo"
             :user="user"
             :key="repo.id"
             @select="selectEvent"
-          ></repoItem>
+          ></repoListItem>
         </v-list-item-group>
       </v-list>
     </v-card>
@@ -24,12 +24,12 @@
 
 <script lang="ts">
 import Vue from "vue";
-import repoItem from "@/components/repoItem.vue";
+import repoListItem from "@/components/repoListItem.vue";
 
 export default Vue.extend({
   name: "repoList",
   components: {
-    repoItem
+    repoListItem
   },
   props: {
     show: Boolean,

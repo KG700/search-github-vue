@@ -4,24 +4,23 @@
       ><v-icon dark left>mdi-arrow-left</v-icon>BACK</v-btn
     >
     <v-list>
-      <branchItem
+      <branchListItem
         v-for="branch in branches"
         :branch="branch"
         :key="branch.id"
-      ></branchItem>
+      ></branchListItem>
     </v-list>
   </v-card>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import branchItem from "@/components/branchItem.vue";
-// import repoItem from "@/components/repoItem.vue";
+import branchListItem from "@/components/branchListItem.vue";
 
 export default Vue.extend({
   name: "branchList",
   components: {
-    branchItem
+    branchListItem
   },
   props: {
     show: Boolean,

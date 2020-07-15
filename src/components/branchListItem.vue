@@ -12,7 +12,7 @@
 import Vue from "vue";
 
 export default Vue.extend({
-  name: "branchItem",
+  name: "branchListItem",
   props: {
     branch: Object
   }

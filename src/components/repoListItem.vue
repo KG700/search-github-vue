@@ -24,14 +24,13 @@ declare module "vue/types/vue" {
 }
 
 export default Vue.extend({
-  name: "repoItem",
+  name: "repoListItem",
   props: {
     repo: Object,
     user: String
   },
   methods: {
     select: function() {
-        // console.log("repo clicked")
       this.$emit("select", this.repo.name);
     }
   }
