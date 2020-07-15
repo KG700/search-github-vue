@@ -26,8 +26,11 @@
       @select="getBranches"
     ></repoList>
 
-    <branchList :show="showBranches" :branches="getBranches"></branchList>
-
+    <branchList
+      :show="showBranches"
+      :branches="branches"
+      @back="showReposHandler"
+    ></branchList>
   </v-container>
 </template>
 
@@ -79,11 +82,11 @@ export default Vue.extend({
       this.showBranches = false;
     },
     getBranches: function(repo: string) {
-      console.log("hello from main");
+      // console.log("hello from main");
       this.selectedRepo = repo;
-      console.log(
-        `https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`
-      );
+      // console.log(
+      //   `https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`
+      // );
       axios
         .get(`https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`)
         .then(response => {
