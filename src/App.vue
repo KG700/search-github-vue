@@ -1,17 +1,17 @@
 <template>
   <v-app>
-   <HelloComponent username="KG700" />
+   <searchGithub />
   </v-app>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloComponent from "@/components/HelloWorld.vue";
+import searchGithub from "@/components/searchGithub.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    HelloComponent
+    searchGithub
   },
   data: () => ({
     showPassword: false

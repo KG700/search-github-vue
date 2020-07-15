@@ -82,7 +82,7 @@ declare module "vue/types/vue" {
 }
 
 export default Vue.extend({
-  name: "HelloWorld",
+  name: "searchGithub",
   data() {
     return {
       username: "",
