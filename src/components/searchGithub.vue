@@ -8,7 +8,7 @@
         @keyup.enter.prevent="findUser"
       />
     </v-form>
-    <p v-if="repos.length === 0" class="mx-auto">
+    <p v-show="repos.length === 0" class="mx-auto">
       Search for a Github user in the search box above
     </p>
     <v-card v-if="repos.length > 0" width="200px" class="mx-auto mt-5">
