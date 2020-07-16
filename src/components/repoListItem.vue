@@ -1,11 +1,18 @@
 <template>
-  <v-list-item @click="select">
+  <v-list-item
+    @click="select"
+    @mouseover="branchDisplayShow"
+    @mouseleave="branchDisplayHide"
+  >
     <v-list-item-content>
       <v-list-item-title>
         <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
       </v-list-item-title>
       <v-list-item-subtitle>
-        {{ repo.created_at }}
+        {{ repo.created_at
+        }}<span v-if="displayBranchInfo" class="d-flex justify-end"
+          >Branches -> <v-icon dark right>mdi-arrow-right</v-icon></span
+        >
       </v-list-item-subtitle>
     </v-list-item-content>
   </v-list-item>
@@ -29,9 +36,22 @@ export default Vue.extend({
     repo: Object,
     user: String
   },
+  data: function() {
+    return {
+      displayBranchInfo: false
+    };
+  },
   methods: {
     select: function() {
       this.$emit("select", this.repo.name);
+    },
+    branchDisplayShow: function() {
+      console.log("mouseover")
+      this.displayBranchInfo = true;
+    },
+    branchDisplayHide: function() {
+      console.log("mouseleave")
+      this.displayBranchInfo = false;
     }
   }
 });
