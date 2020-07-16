@@ -11,7 +11,7 @@
       <v-list-item-subtitle>
         {{ repo.created_at
         }}<span v-if="displayBranchInfo" class="d-flex justify-end"
-          >Branches -> <v-icon dark right>mdi-arrow-right</v-icon></span
+          >Branches -><v-icon dark right>mdi-arrow-right</v-icon></span
         >
       </v-list-item-subtitle>
     </v-list-item-content>
