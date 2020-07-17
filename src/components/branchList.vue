@@ -12,22 +12,26 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import branchListItem from "@/components/branchListItem.vue";
+import { Component, Vue } from "vue-property-decorator";
+import BranchListItem from "./branchListItem.vue";
 
-export default Vue.extend({
-  name: "branchList",
+@Component({
   components: {
-    branchListItem
+    BranchListItem,
   },
   props: {
-    show: Boolean,
-    branches: Array
-  },
-  methods: {
-    back: function() {
-      this.$emit("back");
-    }
+    show: {
+      type: Boolean,
+    },
+    branches: {
+      type: Array,
+    },
   }
-});
+})
+
+export default class BranchList extends Vue {
+  back() {
+    this.$emit("back");
+  }
+};
 </script>
