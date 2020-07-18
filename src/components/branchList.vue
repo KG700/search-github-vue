@@ -17,21 +17,20 @@ import BranchListItem from "./branchListItem.vue";
 
 @Component({
   components: {
-    BranchListItem,
+    BranchListItem
   },
   props: {
     show: {
-      type: Boolean,
+      type: Boolean
     },
     branches: {
-      type: Array,
-    },
+      type: Array
+    }
   }
 })
-
 export default class BranchList extends Vue {
   back() {
     this.$emit("back");
   }
-};
+}
 </script>

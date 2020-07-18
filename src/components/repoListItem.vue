@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosStatic } from "axios";
 
 Vue.prototype.$axios = axios;
@@ -30,29 +30,29 @@ declare module "vue/types/vue" {
   }
 }
 
-export default Vue.extend({
-  name: "repoListItem",
+@Component({
   props: {
-    repo: Object,
-    user: String
-  },
-  data: function() {
-    return {
-      displayBranchInfo: false
-    };
-  },
-  methods: {
-    select: function() {
-      this.$emit("select", this.repo.name);
+    repo: {
+      type: Object
     },
-    branchDisplayShow: function() {
-      console.log("mouseover")
-      this.displayBranchInfo = true;
-    },
-    branchDisplayHide: function() {
-      console.log("mouseleave")
-      this.displayBranchInfo = false;
+    user: {
+      type: String
     }
   }
-});
+})
+export default class RepoListItem extends Vue {
+  displayBranchInfo = false;
+
+  select() {
+    this.$emit("select", this.repo.name);
+  }
+  branchDisplayShow() {
+    console.log("mouseover")
+    this.displayBranchInfo = true;
+  }
+  branchDisplayHide() {
+    console.log("mouseleave")
+    this.displayBranchInfo = false;
+  }
+};
 </script>
