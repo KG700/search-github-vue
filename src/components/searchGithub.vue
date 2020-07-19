@@ -70,7 +70,7 @@ export default class SearchGithub extends Vue {
         this.user = response.data;
       });
     axios
-      .get(`https://api.github.com/users/${this.username}/repos`)
+      .get(`https://api.github.com/users/${this.username}/repos?per_page=100`)
       .then(response => {
         this.repos = response.data;
       });
