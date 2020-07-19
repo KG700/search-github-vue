@@ -36,10 +36,10 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosStatic } from "axios";
-import repoList from "@/components/repoList.vue";
-import branchList from "@/components/branchList.vue";
+import repoList from "./repoList.vue";
+import branchList from "./branchList.vue";
 
 Vue.prototype.$axios = axios;
 
@@ -49,25 +49,24 @@ declare module "vue/types/vue" {
   }
 }
 
-export default Vue.extend({
-  name: "searchGithub",
+@Component({
   components: {
     repoList,
     branchList
-  },
-  data() {
-    return {
-      username: "",
-      user: {},
-      repos: [],
-      selectedRepo: "",
-      branches: [],
-      showRepos: false,
-      showBranches: false
-    };
-  },
-  methods: {
-    findUser: function() {
+  }
+})
+
+export default class SearchGithub extends Vue {
+
+  private username = "";
+  private user = {};
+  private repos = [];
+  private selectedRepo = "";
+  private branches = [];
+  private showRepos = false;
+  private showBranches = false;
+
+    findUser() {
       axios
         .get(`https://api.github.com/users/${this.username}`)
         .then(response => {
@@ -81,8 +80,9 @@ export default Vue.extend({
       this.username = "";
       this.showRepos = true;
       this.showBranches = false;
-    },
-    getBranches: function(repo: string) {
+    }
+
+    getBranches(repo: string) {
       this.selectedRepo = repo;
       axios
         .get(
@@ -93,12 +93,12 @@ export default Vue.extend({
         });
       this.showRepos = false;
       this.showBranches = true;
-    },
-    showReposHandler: function() {
+    }
+
+    showReposHandler() {
       this.showRepos = true;
       this.showBranches = false;
       this.selectedRepo = "";
     }
-  }
-});
+};
 </script>
