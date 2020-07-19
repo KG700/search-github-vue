@@ -31,7 +31,6 @@
       :branches="branches"
       @back="showReposHandler"
     ></branchList>
-    
   </v-container>
 </template>
 
@@ -55,9 +54,7 @@ declare module "vue/types/vue" {
     branchList
   }
 })
-
 export default class SearchGithub extends Vue {
-
   private username = "";
   private user = {};
   private repos = [];
@@ -66,39 +63,39 @@ export default class SearchGithub extends Vue {
   private showRepos = false;
   private showBranches = false;
 
-    findUser() {
-      axios
-        .get(`https://api.github.com/users/${this.username}`)
-        .then(response => {
-          this.user = response.data;
-        });
-      axios
-        .get(`https://api.github.com/users/${this.username}/repos`)
-        .then(response => {
-          this.repos = response.data;
-        });
-      this.username = "";
-      this.showRepos = true;
-      this.showBranches = false;
-    }
+  findUser() {
+    axios
+      .get(`https://api.github.com/users/${this.username}`)
+      .then(response => {
+        this.user = response.data;
+      });
+    axios
+      .get(`https://api.github.com/users/${this.username}/repos`)
+      .then(response => {
+        this.repos = response.data;
+      });
+    this.username = "";
+    this.showRepos = true;
+    this.showBranches = false;
+  }
 
-    getBranches(repo: string) {
-      this.selectedRepo = repo;
-      axios
-        .get(
-          `https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`
-        )
-        .then(response => {
-          this.branches = response.data;
-        });
-      this.showRepos = false;
-      this.showBranches = true;
-    }
+  getBranches(repo: string) {
+    this.selectedRepo = repo;
+    axios
+      .get(
+        `https://api.github.com/repos/${this.user.login}/${this.selectedRepo}/branches`
+      )
+      .then(response => {
+        this.branches = response.data;
+      });
+    this.showRepos = false;
+    this.showBranches = true;
+  }
 
-    showReposHandler() {
-      this.showRepos = true;
-      this.showBranches = false;
-      this.selectedRepo = "";
-    }
-};
+  showReposHandler() {
+    this.showRepos = true;
+    this.showBranches = false;
+    this.selectedRepo = "";
+  }
+}
 </script>
