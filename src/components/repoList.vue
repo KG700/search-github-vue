@@ -23,44 +23,48 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import repoListItem from "@/components/repoListItem.vue";
+import { Component, Vue } from "vue-property-decorator";
+import repoListItem from "./repoListItem.vue";
 
-export default Vue.extend({
-  name: "repoList",
+@Component({
   components: {
     repoListItem
   },
   props: {
-    show: Boolean,
-    user: String,
-    repos: Array
-  },
-  data() {
-    return {
-      reposPage: 0
-    };
-  },
-  computed: {
-    displayRepos: function() {
-      const firstRepo = this.reposPage * 25;
-      const lastRepo = this.reposPage * 25 + 25;
-      return this.repos.slice(firstRepo, lastRepo);
+    show: {
+      type: Boolean
     },
-    disableNext: function() {
-      return this.reposPage === Math.floor(this.repos.length / 25);
-    }
-  },
-  methods: {
-    nextRepoPage: function() {
-      this.reposPage++;
+    user: {
+      type: String
     },
-    previousRepoPage: function() {
-      this.reposPage--;
-    },
-    selectEvent: function(repo: string) {
-      this.$emit("select", repo);
+    repos: {
+      type: Array
     }
   }
-});
+})
+export default class RepoList extends Vue {
+  private reposPage = 0;
+
+  get displayRepos() {
+    const firstRepo = this.reposPage * 25;
+    const lastRepo = this.reposPage * 25 + 25;
+    return this.repos.slice(firstRepo, lastRepo);
+  }
+
+  get disableNext() {
+    return this.reposPage === Math.floor(this.repos.length / 25);
+  }
+
+  nextRepoPage() {
+    this.reposPage++;
+  }
+
+  previousRepoPage() {
+    this.reposPage--;
+  }
+
+  selectEvent(repo: string) {
+    this.$emit("select", repo);
+  }
+}
 </script>
