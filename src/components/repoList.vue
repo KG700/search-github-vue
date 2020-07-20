@@ -4,6 +4,7 @@
       <v-btn small text :disabled="reposPage === 0" @click="previousRepoPage"
         ><v-icon small dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
       >
+      <span class="font-weight-light">Page {{ reposPage + 1 }} of {{totalPages}}</span>
       <v-btn small text :disabled="disableNext" @click="nextRepoPage"
         >NEXT<v-icon small dark right>mdi-arrow-right</v-icon></v-btn
       >
@@ -56,6 +57,10 @@ export default class RepoList extends Vue {
 
   get disableNext() {
     return this.reposPage === Math.floor(this.repos.length / 25);
+  }
+
+  get totalPages() {
+    return Math.ceil(this.repos.length / 25);
   }
 
   nextRepoPage() {
