@@ -10,6 +10,7 @@
           >NEXT<v-icon small dark right>mdi-arrow-right</v-icon></v-btn
         >
       </div>
+      <div class="text-h5 d-flex justify-center">Repositories</div>
       <v-list>
         <v-list-item-group>
           <repoListItem
