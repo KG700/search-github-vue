@@ -1,11 +1,11 @@
 <template>
   <v-container>
     <v-card v-if="show" width="500px" class="mx-auto mt-5">
-      <v-btn outlined :disabled="reposPage === 0" @click="previousRepoPage"
-        ><v-icon dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
+      <v-btn x-small text :disabled="reposPage === 0" @click="previousRepoPage"
+        ><v-icon small dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
       >
-      <v-btn outlined :disabled="disableNext" @click="nextRepoPage"
-        >NEXT<v-icon dark right>mdi-arrow-right</v-icon></v-btn
+      <v-btn x-small text :disabled="disableNext" @click="nextRepoPage"
+        >NEXT<v-icon small dark right>mdi-arrow-right</v-icon></v-btn
       >
       <v-list>
         <v-list-item-group>
