@@ -20,7 +20,7 @@
           ></repoListItem>
         </v-list-item-group>
       </v-list>
-       <pageNavigation
+      <pageNavigation
         :reposPage="reposPage"
         :totalPages="totalPages"
         @next="nextRepoPage"
@@ -32,7 +32,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import pageNavigation from "./pageNavigation.vue";
 import repoListItem from "./repoListItem.vue";
 
@@ -56,8 +56,14 @@ import repoListItem from "./repoListItem.vue";
 export default class RepoList extends Vue {
   private reposPage = 0;
 
+  @Watch("user")
+  userChanged() {
+    console.log("user changed!")
+    this.reposPage = 0;
+  }
+
   get displayRepos() {
-    const sortedRepos = this.repos.sort( (a, b) => {
+    const sortedRepos = this.repos.sort((a, b) => {
       return new Date(a.created_at) - new Date(b.created_at)
     })
     const firstRepo = this.reposPage * 25;
