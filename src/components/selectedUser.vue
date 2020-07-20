@@ -8,7 +8,8 @@
       <v-card-title class="pa-0 mt-5">
         <v-btn x-large text :href="user.html_url">{{ user.name }}</v-btn>
       </v-card-title>
-      <v-card-text class="ml-2">Joined: {{ formattedDate }}</v-card-text>
+      <v-card-text class="ml-2"><v-icon>mdi-github</v-icon> Joined: {{ formattedDate }}</v-card-text>
+      
     </div>
     </div>
   </v-card>
