@@ -11,13 +11,11 @@
     <p v-show="repos.length === 0" class="mx-auto">
       Search for a Github user in the search box above
     </p>
-    <v-card v-if="repos.length > 0" width="200px" class="mx-auto mt-5">
-      <v-img :src="user.avatar_url"></v-img>
-      <v-card-title>
-        <v-btn text :href="user.html_url">{{ user.name }}</v-btn>
-      </v-card-title>
-      <v-card-subtitle>Joined: {{ formattedDate }}</v-card-subtitle>
-    </v-card>
+
+    <selectedUser 
+      :show="showUser"
+      :user="user"
+    ></selectedUser>
 
     <repoList
       :show="showRepos"
@@ -39,6 +37,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import moment from "moment";
 import axios, { AxiosStatic } from "axios";
+import selectedUser from "./selectedUser.vue";
 import repoList from "./repoList.vue";
 import branchList from "./branchList.vue";
 
@@ -52,6 +51,7 @@ declare module "vue/types/vue" {
 
 @Component({
   components: {
+    selectedUser,
     repoList,
     branchList
   }
@@ -62,6 +62,7 @@ export default class SearchGithub extends Vue {
   private repos = [];
   private selectedRepo = "";
   private branches = [];
+  private showUser = false;
   private showRepos = false;
   private showBranches = false;
 
@@ -85,6 +86,7 @@ export default class SearchGithub extends Vue {
     this.username = "";
     this.showRepos = true;
     this.showBranches = false;
+    this.showUser = true;
   }
 
   getBranches(repo: string) {
@@ -98,6 +100,12 @@ export default class SearchGithub extends Vue {
       });
     this.showRepos = false;
     this.showBranches = true;
+  }
+
+  showUserHandler() {
+    if (this.repos.length > 0) {
+      this.showUser = true;
+    }
   }
 
   showReposHandler() {

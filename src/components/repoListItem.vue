@@ -54,11 +54,11 @@ export default class RepoListItem extends Vue {
     this.$emit("select", this.repo.name);
   }
   branchDisplayShow() {
-    console.log("mouseover");
+    // console.log("mouseover");
     this.displayBranchInfo = true;
   }
   branchDisplayHide() {
-    console.log("mouseleave");
+    // console.log("mouseleave");
     this.displayBranchInfo = false;
   }
 }
