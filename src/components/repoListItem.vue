@@ -8,7 +8,7 @@
       <v-list-item-title>
         <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
       </v-list-item-title>
-      <v-list-item-subtitle>
+      <v-list-item-subtitle class="ml-4">
         Created: {{ formattedDate
         }}<span v-if="displayBranchInfo" class="d-flex justify-end font-italic"
           >Click to see branches<v-icon dark right
