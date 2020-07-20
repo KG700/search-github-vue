@@ -1,32 +1,18 @@
 # Search Github
 
 ## Overview
-Search Github to find user's repositories and all their branches
+Explore Github to find user's repositories and all their branches
 
 ## Project setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Run server and view project at localhost:8080
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Future improvements
+- Setup routing in project
+- Have a select menu when searching for users with users that match the searched term. This would make use of the search section of the github api.
