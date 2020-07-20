@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-space-between">
-    <v-btn small text :disabled="disableNext" @click="previousClickEvent"
+    <v-btn small text :disabled="reposPage === 0" @click="previousClickEvent"
       ><v-icon small dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
     >
     <span class="font-weight-light"
