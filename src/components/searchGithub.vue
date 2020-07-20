@@ -55,16 +55,13 @@ export default class SearchGithub extends Vue {
   private showUser = false;
   private showRepos = false;
   private showBranches = false;
-  private searchUsers = ["KateG", "KG700", "KG743"];
 
-  findUser(user) {
-    console.log("finding user")
-    console.log(user)
-    axios
-      .get(`https://api.github.com/users/${user}`)
-      .then(response => {
-        this.user = response.data;
-      });
+  findUser(user: string) {
+    console.log("finding user");
+    console.log(user);
+    axios.get(`https://api.github.com/users/${user}`).then(response => {
+      this.user = response.data;
+    });
     axios
       .get(`https://api.github.com/users/${user}/repos?per_page=100`)
       .then(response => {

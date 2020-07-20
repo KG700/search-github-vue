@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import axios, { AxiosStatic } from "axios";
+import axios from "axios";
 
 @Component
 export default class SearchUsers extends Vue {
@@ -26,7 +26,7 @@ export default class SearchUsers extends Vue {
   private isLoading = false;
 
   @Watch("search")
-  searchChange(val) {
+  searchChange(val: string) {
     if (this.search === null || this.search === "") {
       this.isLoading = false;
       return;
@@ -36,12 +36,12 @@ export default class SearchUsers extends Vue {
 
     this.isLoading = true;
 
-    console.log(`https://api.github.com/search/users?per_page=6&q=${val}`)
+    console.log(`https://api.github.com/search/users?per_page=6&q=${val}`);
 
     axios
       .get(`https://api.github.com/search/users?per_page=6&q=${val}`)
       .then(response => {
-        console.log(response.data.items)
+        console.log(response.data.items);
         this.users = response.data.items;
         this.isLoading = false;
       });
