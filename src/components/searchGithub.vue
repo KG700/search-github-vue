@@ -8,9 +8,6 @@
         @keyup.enter.prevent="findUser"
       />
     </v-form>
-    <p v-show="repos.length === 0" class="mx-auto">
-      Search for a Github user in the search box above
-    </p>
 
     <selectedUser :show="showUser" :user="user"></selectedUser>
 

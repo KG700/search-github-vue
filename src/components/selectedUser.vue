@@ -6,6 +6,9 @@
     </v-card-title>
     <v-card-subtitle>Joined: {{ formattedDate }}</v-card-subtitle>
   </v-card>
+  <p v-else class="d-flex justify-center">
+    Search for a Github user in the search box above
+  </p>
 </template>
 
 <script lang="ts">
