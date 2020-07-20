@@ -10,8 +10,10 @@
       </v-list-item-title>
       <v-list-item-subtitle>
         Created: {{ formattedDate
-        }}<span v-if="displayBranchInfo" class="d-flex justify-end"
-          >Branches -><v-icon dark right>mdi-arrow-right</v-icon></span
+        }}<span v-if="displayBranchInfo" class="d-flex justify-end font-italic"
+          >Click to see branches<v-icon dark right
+            >mdi-arrow-right</v-icon
+          ></span
         >
       </v-list-item-subtitle>
     </v-list-item-content>
