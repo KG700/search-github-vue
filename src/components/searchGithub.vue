@@ -1,14 +1,7 @@
 <template>
   <v-container style="width: 700px">
     <welcome :show="!showUser"></welcome>
-    <v-form @submit.prevent>
-      <v-text-field
-        v-model="username"
-        label="Search Github Usernames..."
-        prepend-icon="mdi-magnify"
-        @keyup.enter.prevent="findUser"
-      />
-    </v-form>
+    <searchUsers></searchUsers>
     <selectedUser :show="showUser" :user="user"></selectedUser>
 
     <repoList
@@ -31,6 +24,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosStatic } from "axios";
 import welcome from "./welcome.vue";
+import searchUsers from "./searchUsers.vue";
 import selectedUser from "./selectedUser.vue";
 import repoList from "./repoList.vue";
 import branchList from "./branchList.vue";
@@ -46,6 +40,7 @@ declare module "vue/types/vue" {
 @Component({
   components: {
     welcome,
+    searchUsers,
     selectedUser,
     repoList,
     branchList
@@ -60,6 +55,8 @@ export default class SearchGithub extends Vue {
   private showUser = false;
   private showRepos = false;
   private showBranches = false;
+  private search = null;
+  private searchUsers = ["KateG", "KG700", "KG743"];
 
   findUser() {
     axios
