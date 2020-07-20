@@ -55,7 +55,6 @@ export default class SearchGithub extends Vue {
   private showUser = false;
   private showRepos = false;
   private showBranches = false;
-  private search = null;
   private searchUsers = ["KateG", "KG700", "KG743"];
 
   findUser() {
