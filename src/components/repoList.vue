@@ -1,15 +1,7 @@
 <template>
   <v-container>
     <v-card v-if="show" width="500px" class="mx-auto mt-5">
-      <div class="d-flex justify-space-between">
-        <v-btn small text :disabled="reposPage === 0" @click="previousRepoPage"
-          ><v-icon small dark left>mdi-arrow-left</v-icon>PREVIOUS</v-btn
-        >
-        <span class="font-weight-light">Page {{ reposPage + 1 }} of {{totalPages}}</span>
-        <v-btn small text :disabled="disableNext" @click="nextRepoPage"
-          >NEXT<v-icon small dark right>mdi-arrow-right</v-icon></v-btn
-        >
-      </div>
+      <pageNavigation></pageNavigation>
       <div class="text-h5 d-flex justify-center">Repositories</div>
       <v-list>
         <v-list-item-group>
@@ -28,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import pageNavigation from "./pageNavigation.vue";
 import repoListItem from "./repoListItem.vue";
 
 @Component({
