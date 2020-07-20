@@ -1,7 +1,11 @@
 <template>
   <v-container>
     <v-card v-if="show" width="500px" class="mx-auto mt-5">
-      <pageNavigation></pageNavigation>
+      <pageNavigation
+        :reposPage="reposPage"
+        @next="nextRepoPage"
+        @previous="previousRepoPage"
+      ></pageNavigation>
       <div class="text-h5 d-flex justify-center">Repositories</div>
       <v-list>
         <v-list-item-group>
@@ -25,7 +29,8 @@ import repoListItem from "./repoListItem.vue";
 
 @Component({
   components: {
-    repoListItem
+    repoListItem,
+    pageNavigation
   },
   props: {
     show: {
