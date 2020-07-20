@@ -12,10 +12,7 @@
       Search for a Github user in the search box above
     </p>
 
-    <selectedUser 
-      :show="showUser"
-      :user="user"
-    ></selectedUser>
+    <selectedUser :show="showUser" :user="user"></selectedUser>
 
     <repoList
       :show="showRepos"
@@ -35,7 +32,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import moment from "moment";
 import axios, { AxiosStatic } from "axios";
 import selectedUser from "./selectedUser.vue";
 import repoList from "./repoList.vue";
@@ -65,12 +61,6 @@ export default class SearchGithub extends Vue {
   private showUser = false;
   private showRepos = false;
   private showBranches = false;
-
-  get formattedDate() {
-    console.log(this.user.created_at);
-    console.log(moment(this.user.created_at).format("MM/DD/YYYY"));
-    return moment(this.user.created_at).format("DD MMM YYYY");
-  }
 
   findUser() {
     axios

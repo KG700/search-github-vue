@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import moment from "moment";
 
 @Component({
   props: {
@@ -21,5 +22,11 @@ import { Component, Vue } from "vue-property-decorator";
     }
   }
 })
-export default class SelectedUser extends Vue {}
+export default class SelectedUser extends Vue {
+  get formattedDate() {
+    console.log(this.user.created_at);
+    console.log(moment(this.user.created_at).format("MM/DD/YYYY"));
+    return moment(this.user.created_at).format("DD MMM YYYY");
+  }
+}
 </script>
