@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container style="width: 700px">
     <v-form @submit.prevent>
       <v-text-field
         v-model="username"
@@ -8,7 +8,6 @@
         @keyup.enter.prevent="findUser"
       />
     </v-form>
-
     <selectedUser :show="showUser" :user="user"></selectedUser>
 
     <repoList
