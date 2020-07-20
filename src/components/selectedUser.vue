@@ -1,10 +1,16 @@
 <template>
-  <v-card v-if="show" width="200px" class="mx-auto mt-5">
-    <v-img :src="user.avatar_url"></v-img>
-    <v-card-title>
-      <v-btn text :href="user.html_url">{{ user.name }}</v-btn>
-    </v-card-title>
-    <v-card-subtitle>Joined: {{ formattedDate }}</v-card-subtitle>
+  <v-card v-if="show" width="500px" class="mx-auto mt-5">
+    <div class="d-flex flex-row">
+      <v-avatar size="120" class="ma-3">
+        <v-img :src="user.avatar_url"></v-img>
+      </v-avatar>
+      <div class="d-flex flex-column">
+      <v-card-title class="pa-0 mt-5">
+        <v-btn x-large text :href="user.html_url">{{ user.name }}</v-btn>
+      </v-card-title>
+      <v-card-text class="ml-2">Joined: {{ formattedDate }}</v-card-text>
+    </div>
+    </div>
   </v-card>
   <p v-else class="d-flex justify-center">
     Search for a Github user in the search box above
