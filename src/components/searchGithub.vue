@@ -1,7 +1,7 @@
 <template>
   <v-container style="width: 700px">
     <welcome :show="!showUser"></welcome>
-    <searchUsers></searchUsers>
+    <searchUsers @selectUser="findUser"></searchUsers>
     <selectedUser :show="showUser" :user="user"></selectedUser>
 
     <repoList
@@ -57,14 +57,16 @@ export default class SearchGithub extends Vue {
   private showBranches = false;
   private searchUsers = ["KateG", "KG700", "KG743"];
 
-  findUser() {
+  findUser(user) {
+    console.log("finding user")
+    console.log(user)
     axios
-      .get(`https://api.github.com/users/${this.username}`)
+      .get(`https://api.github.com/users/${user}`)
       .then(response => {
         this.user = response.data;
       });
     axios
-      .get(`https://api.github.com/users/${this.username}/repos?per_page=100`)
+      .get(`https://api.github.com/users/${user}/repos?per_page=100`)
       .then(response => {
         this.repos = response.data;
       });

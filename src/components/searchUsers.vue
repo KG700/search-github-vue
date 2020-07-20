@@ -14,6 +14,7 @@
         :items="userOptions"
         :loading="isLoading"
         :search-input.sync="search"
+        @click="select"
       > </v-autocomplete>
     </v-form>
 </template>
@@ -31,9 +32,11 @@ export default class SearchUsers extends Vue {
 
   @Watch("search")
   searchChange(val) {
-      console.log("Searching...")
-      console.log(val)
-    if (this.search === null) return;
+    if (this.search === null || this.search === '') {
+        this.isLoading = false;
+        return;
+    }
+    console.log(this.isLoading)
     if (this.isLoading) return;
 
     this.isLoading = true;
@@ -49,10 +52,22 @@ export default class SearchUsers extends Vue {
       });
   }
 
+@Watch("username")
+selectedUser() {
+    console.log("username selected");
+    this.$emit("selectUser", this.username);
+}
+
   get userOptions() {
     return this.users.map(user => {
       return user.login;
     });
+  }
+
+select() {
+    if (this.username !== null) {
+        this.$emit("selectUser", this.username);
+    }
   }
 }
 </script>
