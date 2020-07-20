@@ -20,6 +20,13 @@
           ></repoListItem>
         </v-list-item-group>
       </v-list>
+       <pageNavigation
+        :reposPage="reposPage"
+        :totalPages="totalPages"
+        @next="nextRepoPage"
+        @nextDisabled="disableNext"
+        @previous="previousRepoPage"
+      ></pageNavigation>
     </v-card>
   </v-container>
 </template>
