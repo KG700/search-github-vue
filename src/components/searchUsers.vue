@@ -43,8 +43,9 @@ export default class SearchUsers extends Vue {
     axios
       .get(`https://api.github.com/search/users?per_page=6&q=${val}`)
       .then(response => {
-          console.log(response.data.items)
+        console.log(response.data.items)
         this.users = response.data.items;
+        this.isLoading = false;
       });
   }
 
