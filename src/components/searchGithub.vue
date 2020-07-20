@@ -29,6 +29,7 @@
     <branchList
       :show="showBranches"
       :branches="branches"
+      :selectedRepo="selectedRepo"
       @back="showReposHandler"
     ></branchList>
   </v-container>
