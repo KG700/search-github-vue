@@ -1,22 +1,17 @@
 <template>
-<v-form @submit.prevent>
-      <!-- <v-text-field
-        v-model="username"
-        label="Search Github Usernames..."
-        prepend-icon="mdi-magnify"
-        @keyup.enter.prevent="findUser"
-      /> -->
+  <v-form @submit.prevent>
     <v-autocomplete
-        v-model="username"
-        label="Github users"
-        placeholder="Search Github Usernames..."
-        prepend-icon="mdi-magnify"
-        :items="userOptions"
-        :loading="isLoading"
-        :search-input.sync="search"
-        @click="select"
-      > </v-autocomplete>
-    </v-form>
+      v-model="username"
+      label="Github users"
+      placeholder="Search Github Usernames..."
+      prepend-icon="mdi-magnify"
+      :items="userOptions"
+      :loading="isLoading"
+      :search-input.sync="search"
+      hide-no-data
+    >
+    </v-autocomplete>
+  </v-form>
 </template>
 
 <script lang="ts">
@@ -32,11 +27,11 @@ export default class SearchUsers extends Vue {
 
   @Watch("search")
   searchChange(val) {
-    if (this.search === null || this.search === '') {
-        this.isLoading = false;
-        return;
+    if (this.search === null || this.search === "") {
+      this.isLoading = false;
+      return;
     }
-    console.log(this.isLoading)
+    console.log(this.isLoading);
     if (this.isLoading) return;
 
     this.isLoading = true;
@@ -52,22 +47,15 @@ export default class SearchUsers extends Vue {
       });
   }
 
-@Watch("username")
-selectedUser() {
-    console.log("username selected");
+  @Watch("username")
+  selectedUser() {
     this.$emit("selectUser", this.username);
-}
+  }
 
   get userOptions() {
     return this.users.map(user => {
       return user.login;
     });
-  }
-
-select() {
-    if (this.username !== null) {
-        this.$emit("selectUser", this.username);
-    }
   }
 }
 </script>
