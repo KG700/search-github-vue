@@ -46,9 +46,10 @@ export default class RepoList extends Vue {
   private reposPage = 0;
 
   get displayRepos() {
+
     const firstRepo = this.reposPage * 25;
     const lastRepo = this.reposPage * 25 + 25;
-    return this.repos.slice(firstRepo, lastRepo);
+    return this.repos.reverse().slice(firstRepo, lastRepo);
   }
 
   get disableNext() {
