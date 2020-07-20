@@ -76,7 +76,7 @@ export default class RepoList extends Vue {
   }
 
   get totalPages() {
-    return Math.ceil(this.repos.length / 25);
+    return this.repos.length > 0 ? Math.ceil(this.repos.length / 25) : 1;
   }
 
   nextRepoPage() {
