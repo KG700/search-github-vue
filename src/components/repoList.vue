@@ -3,7 +3,9 @@
     <v-card v-if="show" width="500px" class="mx-auto mt-5">
       <pageNavigation
         :reposPage="reposPage"
+        :totalPages="totalPages"
         @next="nextRepoPage"
+        @nextDisabled="disableNext"
         @previous="previousRepoPage"
       ></pageNavigation>
       <div class="text-h5 d-flex justify-center">Repositories</div>
