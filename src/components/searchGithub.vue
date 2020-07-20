@@ -16,7 +16,7 @@
       <v-card-title>
         <v-btn text :href="user.html_url">{{ user.name }}</v-btn>
       </v-card-title>
-      <v-card-subtitle>joined: {{ user.created_at }}</v-card-subtitle>
+      <v-card-subtitle>Joined: {{ formattedDate }}</v-card-subtitle>
     </v-card>
 
     <repoList
@@ -36,6 +36,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import moment from "moment";
 import axios, { AxiosStatic } from "axios";
 import repoList from "./repoList.vue";
 import branchList from "./branchList.vue";
@@ -62,6 +63,12 @@ export default class SearchGithub extends Vue {
   private branches = [];
   private showRepos = false;
   private showBranches = false;
+
+  get formattedDate() {
+    console.log(this.user.created_at);
+    console.log(moment(this.user.created_at).format("MM/DD/YYYY"));
+    return moment(this.user.created_at).format("DD MMM YYYY");
+  }
 
   findUser() {
     axios

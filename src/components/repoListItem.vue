@@ -9,7 +9,7 @@
         <v-btn text :href="repo.html_url">{{ repo.name }}</v-btn>
       </v-list-item-title>
       <v-list-item-subtitle>
-        {{ repo.created_at
+        Created: {{ formattedDate
         }}<span v-if="displayBranchInfo" class="d-flex justify-end"
           >Branches -><v-icon dark right>mdi-arrow-right</v-icon></span
         >
@@ -20,6 +20,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import moment from "moment";
 import axios, { AxiosStatic } from "axios";
 
 Vue.prototype.$axios = axios;
@@ -42,6 +43,10 @@ declare module "vue/types/vue" {
 })
 export default class RepoListItem extends Vue {
   displayBranchInfo = false;
+
+  get formattedDate() {
+    return moment(this.repo.created_at).format("DD MMM YYYY hh:mm A");
+  }
 
   select() {
     this.$emit("select", this.repo.name);
