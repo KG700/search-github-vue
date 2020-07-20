@@ -14,9 +14,6 @@
     </div>
     </div>
   </v-card>
-  <p v-else class="d-flex justify-center">
-    Search for a Github user in the search box above
-  </p>
 </template>
 
 <script lang="ts">

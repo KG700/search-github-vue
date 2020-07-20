@@ -1,5 +1,6 @@
 <template>
   <v-container style="width: 700px">
+    <welcome :show="!showUser"></welcome>
     <v-form @submit.prevent>
       <v-text-field
         v-model="username"
@@ -29,6 +30,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosStatic } from "axios";
+import welcome from "./welcome.vue";
 import selectedUser from "./selectedUser.vue";
 import repoList from "./repoList.vue";
 import branchList from "./branchList.vue";
@@ -43,6 +45,7 @@ declare module "vue/types/vue" {
 
 @Component({
   components: {
+    welcome,
     selectedUser,
     repoList,
     branchList
