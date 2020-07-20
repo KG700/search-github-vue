@@ -3,7 +3,9 @@
     <v-btn small text class="ma-2" @click="back"
       ><v-icon small dark left>mdi-arrow-left</v-icon>BACK</v-btn
     >
-    <div class="text-h5 d-flex justify-center">Branches of: {{selectedRepo}}</div>
+    <div class="text-h5 d-flex justify-center">
+      Branches of: {{ selectedRepo }}
+    </div>
     <v-list>
       <branchListItem v-for="branch in branches" :key="branch.id">
         {{ branch.name }}</branchListItem

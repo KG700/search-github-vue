@@ -36,11 +36,7 @@ import { Component, Vue, Watch } from "vue-property-decorator";
 import pageNavigation from "./pageNavigation.vue";
 import repoListItem from "./repoListItem.vue";
 
-@Component({
-  components: {
-    repoListItem,
-    pageNavigation
-  },
+const AppProps = Vue.extend({
   props: {
     show: {
       type: Boolean
@@ -53,19 +49,27 @@ import repoListItem from "./repoListItem.vue";
     }
   }
 })
-export default class RepoList extends Vue {
+
+@Component({
+  components: {
+    repoListItem,
+    pageNavigation
+  }
+})
+export default class RepoList extends AppProps {
   private reposPage = 0;
 
   @Watch("user")
   userChanged() {
-    console.log("user changed!")
+    console.log("user changed!");
     this.reposPage = 0;
   }
 
   get displayRepos() {
+    console.log(this.repos);
     const sortedRepos = this.repos.sort((a, b) => {
       return new Date(a.created_at) - new Date(b.created_at)
-    })
+    });
     const firstRepo = this.reposPage * 25;
     const lastRepo = this.reposPage * 25 + 25;
     return sortedRepos.reverse().slice(firstRepo, lastRepo);

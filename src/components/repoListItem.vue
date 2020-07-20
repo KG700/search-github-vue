@@ -33,7 +33,7 @@ declare module "vue/types/vue" {
   }
 }
 
-@Component({
+const AppProps = Vue.extend({
   props: {
     repo: {
       type: Object
@@ -42,8 +42,10 @@ declare module "vue/types/vue" {
       type: String
     }
   }
-})
-export default class RepoListItem extends Vue {
+});
+
+@Component
+export default class RepoListItem extends AppProps {
   displayBranchInfo = false;
 
   get formattedDate() {
@@ -54,11 +56,9 @@ export default class RepoListItem extends Vue {
     this.$emit("select", this.repo.name);
   }
   branchDisplayShow() {
-    // console.log("mouseover");
     this.displayBranchInfo = true;
   }
   branchDisplayHide() {
-    // console.log("mouseleave");
     this.displayBranchInfo = false;
   }
 }

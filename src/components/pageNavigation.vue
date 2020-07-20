@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component({
+const AppProps = Vue.extend({
   props: {
     reposPage: {
       type: Number
@@ -24,8 +24,10 @@ import { Component, Vue } from "vue-property-decorator";
       type: Number
     }
   }
-})
-export default class PageNavigation extends Vue {
+});
+
+@Component
+export default class PageNavigation extends AppProps {
   get disableNext() {
     return this.reposPage + 1 == this.totalPages;
   }

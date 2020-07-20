@@ -20,7 +20,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import moment from "moment";
 
-@Component({
+const AppProps = Vue.extend({
   props: {
     show: {
       type: Boolean
@@ -29,8 +29,10 @@ import moment from "moment";
       type: Object
     }
   }
-})
-export default class SelectedUser extends Vue {
+});
+
+@Component
+export default class SelectedUser extends AppProps {
   get formattedDate() {
     return moment(this.user.created_at).format("DD MMM YYYY");
   }
