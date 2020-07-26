@@ -13,21 +13,15 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
-
-const AppProps = Vue.extend({
-  props: {
-    reposPage: {
-      type: Number
-    },
-    totalPages: {
-      type: Number
-    }
-  }
-});
+import { Component, Vue, Prop } from "vue-property-decorator";
 
 @Component
-export default class PageNavigation extends AppProps {
+export default class PageNavigation extends Vue {
+  @Prop({ type: Number, default: () => 0 })
+  reposPage!: number;
+  @Prop({ type: Number, default: () => 0 })
+  totalPages!: number;
+
   get disableNext() {
     return this.reposPage + 1 == this.totalPages;
   }
