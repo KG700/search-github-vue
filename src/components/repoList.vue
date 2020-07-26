@@ -33,8 +33,8 @@
 
 <script lang="ts">
 import { Component, Vue, Watch } from "vue-property-decorator";
-import pageNavigation from "./pageNavigation.vue";
-import repoListItem from "./repoListItem.vue";
+import pageNavigation from "./PageNavigation.vue";
+import repoListItem from "./RepoListItem.vue";
 
 const AppProps = Vue.extend({
   props: {

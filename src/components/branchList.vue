@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import BranchListItem from "./branchListItem.vue";
+import BranchListItem from "./BranchListItem.vue";
 
 @Component({
   components: {

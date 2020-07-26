@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import searchGithub from "@/components/searchGithub.vue";
+import searchGithub from "@/components/SearchGithub.vue";
 
 export default Vue.extend({
   name: "App",

@@ -23,11 +23,11 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import axios, { AxiosStatic } from "axios";
-import welcome from "./welcome.vue";
-import searchUsers from "./searchUsers.vue";
-import selectedUser from "./selectedUser.vue";
-import repoList from "./repoList.vue";
-import branchList from "./branchList.vue";
+import welcome from "./Welcome.vue";
+import searchUsers from "./SearchUsers.vue";
+import selectedUser from "./SelectedUser.vue";
+import repoList from "./RepoList.vue";
+import branchList from "./BranchList.vue";
 
 Vue.prototype.$axios = axios;
 
