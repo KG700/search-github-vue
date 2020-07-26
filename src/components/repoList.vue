@@ -44,7 +44,7 @@ const AppProps = Vue.extend({
       type: Array
     }
   }
-})
+});
 
 @Component({
   components: {
@@ -62,7 +62,6 @@ export default class RepoList extends AppProps {
   }
 
   get displayRepos() {
-    console.log(this.repos);
     const sortedRepos = this.repos.sort((a, b) => {
       return new Date(a.created_at) - new Date(b.created_at)
     });
@@ -71,24 +70,11 @@ export default class RepoList extends AppProps {
     return sortedRepos.reverse().slice(firstRepo, lastRepo);
   }
 
-  // get disableNext() {
-  //   return this.reposPage === Math.floor(this.repos.length / 25);
-  // }
-
   get totalPages() {
     return this.repos.length > 0 ? Math.ceil(this.repos.length / 25) : 1;
   }
 
-  // nextRepoPage() {
-  //   this.reposPage++;
-  // }
-
-  // previousRepoPage() {
-  //   this.reposPage--;
-  // }
-
-  changePage(page) {
-    console.log(page)
+  changePage(page: number) {
     this.reposPage = page;
   }
 
