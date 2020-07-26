@@ -4,9 +4,7 @@
       <pageNavigation
         :reposPage="reposPage"
         :totalPages="totalPages"
-        @next="nextRepoPage"
-        @nextDisabled="disableNext"
-        @previous="previousRepoPage"
+        @pageClick="changePage"
       ></pageNavigation>
       <div class="text-h5 d-flex justify-center">Repositories</div>
       <v-list>
@@ -23,9 +21,7 @@
       <pageNavigation
         :reposPage="reposPage"
         :totalPages="totalPages"
-        @next="nextRepoPage"
-        @nextDisabled="disableNext"
-        @previous="previousRepoPage"
+        @pageClick="changePage"
       ></pageNavigation>
     </v-card>
   </v-container>
@@ -57,12 +53,12 @@ const AppProps = Vue.extend({
   }
 })
 export default class RepoList extends AppProps {
-  private reposPage = 0;
+  private reposPage = 1;
 
   @Watch("user")
   userChanged() {
     console.log("user changed!");
-    this.reposPage = 0;
+    this.reposPage = 1;
   }
 
   get displayRepos() {
@@ -70,25 +66,30 @@ export default class RepoList extends AppProps {
     const sortedRepos = this.repos.sort((a, b) => {
       return new Date(a.created_at) - new Date(b.created_at)
     });
-    const firstRepo = this.reposPage * 25;
-    const lastRepo = this.reposPage * 25 + 25;
+    const firstRepo = this.reposPage * 25 - 25;
+    const lastRepo = this.reposPage * 25;
     return sortedRepos.reverse().slice(firstRepo, lastRepo);
   }
 
-  get disableNext() {
-    return this.reposPage === Math.floor(this.repos.length / 25);
-  }
+  // get disableNext() {
+  //   return this.reposPage === Math.floor(this.repos.length / 25);
+  // }
 
   get totalPages() {
     return this.repos.length > 0 ? Math.ceil(this.repos.length / 25) : 1;
   }
 
-  nextRepoPage() {
-    this.reposPage++;
-  }
+  // nextRepoPage() {
+  //   this.reposPage++;
+  // }
 
-  previousRepoPage() {
-    this.reposPage--;
+  // previousRepoPage() {
+  //   this.reposPage--;
+  // }
+
+  changePage(page) {
+    console.log(page)
+    this.reposPage = page;
   }
 
   selectEvent(repo: string) {

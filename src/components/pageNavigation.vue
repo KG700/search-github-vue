@@ -15,6 +15,7 @@
     <v-pagination
       v-model="reposPage"
       :length="totalPages"
+      @input="clickEvent"
     ></v-pagination>
   </div>
 </template>
@@ -37,6 +38,10 @@ export default class PageNavigation extends Vue {
   }
   previousClickEvent() {
     this.$emit("previous");
+  }
+  clickEvent(page: number) {
+    console.log(page);
+    this.$emit("pageClick", page);
   }
 }
 </script>
